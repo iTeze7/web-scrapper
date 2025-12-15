@@ -9,7 +9,6 @@ options.add_argument("--start-maximized")
 
 driver = webdriver.Chrome(options=options)
 
-# URL CORRIGIDA (SP)
 driver.get("https://www.vagas.com.br/vagas-de-ti-em-sao-paulo")
 time.sleep(6)
 
@@ -27,7 +26,6 @@ for vaga in vagas:
         local = vaga.find_element(By.CLASS_NAME, "vaga-local").text
         link = vaga.find_element(By.TAG_NAME, "a").get_attribute("href")
 
-        # FILTRO SP + GUARULHOS (mais flexível)
         if "SP" in local or "São Paulo" in local or "Guarulhos" in local:
             lista.append({
                 "Título da Vaga": titulo,
@@ -47,3 +45,4 @@ nome_arquivo = f"vagas_ti_sp_{data_coleta}.xlsx"
 df.to_excel(nome_arquivo, index=False)
 
 print(f"✅ {len(df)} vagas salvas no arquivo {nome_arquivo}")
+
